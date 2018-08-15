@@ -4,9 +4,11 @@ using System.Threading.Tasks;
 
 namespace APITest
 {
-
     class Program
 	{
+
+        public static string ApiBaseUrl { get; set; } = "http://localhost:8080/api/patients";
+        public static string token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUzNjcyMTcwN30.W-2GDUzxihpaIMpClSjjVCP_NwOfXTG6o1D2PELzyfOFS0MFHEgrJIce9849sFMShok2VPTZ6JfW6qMxSx-SCw";
 
 		public static class AsyncHelper
         {
@@ -30,34 +32,39 @@ namespace APITest
                     .GetAwaiter()
                     .GetResult();
         }
-		public static string token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUzNjcyMTcwN30.W-2GDUzxihpaIMpClSjjVCP_NwOfXTG6o1D2PELzyfOFS0MFHEgrJIce9849sFMShok2VPTZ6JfW6qMxSx-SCw";
+
 		static void Main(string[] args)
         {
-			//For Small Image
-			int i = 0;
-			while(true){
-				i++;
-				if (i%2==1)
+            var len = args.Length;
+            if (len == 0) {
+                // TODO: no args
+            } else if (len == 1) {
+                long t = 0;
+                int times = 1000;
+                switch (args[0])
                 {
-                    Console.WriteLine("Totaltime for http = {0} ms", AsyncHelper.RunSync<long>(HTTPTest.Test));
+                    case "http":
+                        for (var i = 0; i < times; i++) {
+                            t += HTTPTest.Test();
+                        }
+                        Console.WriteLine("Total time for http = {0} ms", t);
+                        Console.WriteLine("Average time for http = {0} ms", t * 1.0 / times);
+                        break;
+                    case "restsharp":
+                        for (var i = 0; i < times; i++)
+                        {
+                            t += RestTest.Test();
+                        }
+                        Console.WriteLine("Totaltime for restsharp = {0} ms", t);
+                        Console.WriteLine("Average time for restsharp = {0} ms", t * 1.0 / times);
+                        break;
+                    case "refit":
+                        break;
                 }
-                else
-                {
-                    Console.WriteLine("Totaltime for restsharp = {0} ms", AsyncHelper.RunSync<long>(RestTest.Test));
-                };
-				if(i==10){
-					break;
-				}
-			}
-			//Console.WriteLine("Totaltime = {0} ms",AsyncHelper.RunSync<long>(HTTPTest.Test));
-			//Task.Delay(100000);
-			//Console.WriteLine("Totaltime = {0} ms", AsyncHelper.RunSync<long>(RestTest.Test))
-			//RestTest.Test();
-			//Console.WriteLine("Totaltime = {0} ms", RestTest.Test());
-			//Task.Delay(100000);
-			///HTTPTest.Test();
-			//Console.WriteLine("Totaltime = {0} ms", AsyncHelper.RunSync<long>(HTTPTest.Test));
-        }      
+            } else {
+                Console.WriteLine("Error: only accept one argument!");
+            }
+        }
 
     }
 }
