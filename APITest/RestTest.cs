@@ -18,7 +18,6 @@ namespace APITest
 
             //Authorization
             request.AddHeader("authorization", "Bearer " + APITest.Program.token);
-
             RestSharp.Deserializers.JsonDeserializer deserial = new RestSharp.Deserializers.JsonDeserializer();
             IRestResponse getResponse = client.Execute(request);
             request.JsonSerializer = new RestSharp.Serializers.JsonSerializer();

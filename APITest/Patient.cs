@@ -1,34 +1,74 @@
 ﻿using System;
+using Newtonsoft.Json;
+
 namespace APITest
 {
 	public class Patient
     {
-        public int ID { get; set; }
+		[JsonProperty("id")]
+        public long Id { get; set; }
+
+        [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("address")]
         public string Address { get; set; }
+
+        [JsonProperty("phone")]
         public string Phone { get; set; }
+
+        [JsonProperty("email")]
         public string Email { get; set; }
-        public string Birth { get; set; }
+
+        [JsonProperty("birth")]
+        public DateTimeOffset Birth { get; set; }
+
+        [JsonProperty("photo")]
         public string Photo { get; set; }
-        public RootObject[] Appointments { get; set; }
-        public Treatment[] Treatments { get; set; }
+
+        [JsonProperty("appointments")]
+        public Appointment[] Appointments { get; set; }
+
+        [JsonProperty("treatments")]
+		public Treatment[] Treatments { get; set; }
     }
-	public class RootObject
+
+	public class Appointment
     {
-        public int id { get; set; }
-        public int Status { get; set; }
-        public int doctorId { get; set; }
-        public object photos { get; set; }
-        public object commands { get; set; }
-        public object teeth { get; set; }
+		[JsonProperty("id")]
+        public long Id { get; set; }
+
+        [JsonProperty("status")]
+        public long Status { get; set; }
+
+        [JsonProperty("arrival")]
+        public DateTimeOffset Arrival { get; set; }
+
+        [JsonProperty("doctorId")]
+        public long DoctorId { get; set; }
+
+        [JsonProperty("reservation")]
+        public bool Reservation { get; set; }
     }
+
     public partial class Treatment
     {
+		[JsonProperty("id")]
         public long Id { get; set; }
+
+        [JsonProperty("status")]
         public long Status { get; set; }
+
+        [JsonProperty("doctorId")]
         public long DoctorId { get; set; }
+
+        [JsonProperty("photos")]
         public object Photos { get; set; }
+
+        [JsonProperty("commands")]
         public object Commands { get; set; }
+
+        [JsonProperty("teeth")]
         public object Teeth { get; set; }
     }
 }

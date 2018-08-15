@@ -4,11 +4,13 @@ using System.Threading.Tasks;
 
 namespace APITest
 {
+
     class Program
 	{
 
         public static string ApiBaseUrl { get; set; } = "http://localhost:8080/api/patients";
         public static string token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUzNjcyMTcwN30.W-2GDUzxihpaIMpClSjjVCP_NwOfXTG6o1D2PELzyfOFS0MFHEgrJIce9849sFMShok2VPTZ6JfW6qMxSx-SCw";
+
 
 		public static class AsyncHelper
         {
@@ -59,12 +61,17 @@ namespace APITest
                         Console.WriteLine("Average time for restsharp = {0} ms", t * 1.0 / times);
                         break;
                     case "refit":
+						for (var i = 0; i < times; i++)
+                        {
+                            t += RefitTest.Test();
+                        }
+						Console.WriteLine("Totaltime for refit = {0} ms", t);
+                        Console.WriteLine("Average time for refit = {0} ms", t * 1.0 / times);
                         break;
                 }
             } else {
                 Console.WriteLine("Error: only accept one argument!");
             }
         }
-
     }
 }
