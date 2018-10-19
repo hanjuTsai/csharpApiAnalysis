@@ -19,12 +19,13 @@ namespace APITest
             var watch = Stopwatch.StartNew();
 
             var http = new HttpClient();
-            http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Program.token);
+            //http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Program.token);
             var result = http.GetAsync(Program.ApiBaseUrl).Result;
 
             // Serialization         
-            var body = result.Content.ReadAsStringAsync();
-            var jsonBody = Json.ToObjectAsync<Patient[]>(body.Result).Result;
+            //var body = result.Content.ReadAsStringAsync();
+            //var jsonBody = Json.ToObjectAsync<char[]>(body.Result).Result;
+            //Console.Write(body.Result);
 
             // For counting the time of serialization
             watch.Stop();

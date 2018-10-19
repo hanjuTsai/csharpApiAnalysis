@@ -7,9 +7,9 @@ namespace APITest
 
     class Program
 	{
-
-        public static string ApiBaseUrl { get; set; } = "http://localhost:8080/api/patients";
-        public static string token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUzNjcyMTcwN30.W-2GDUzxihpaIMpClSjjVCP_NwOfXTG6o1D2PELzyfOFS0MFHEgrJIce9849sFMShok2VPTZ6JfW6qMxSx-SCw";
+        public static int num = 0;
+        public static string ApiBaseUrl { get; set; } = "http://localhost:8080/v1/generate/{0}";
+        //public static string token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUzNjcyMTcwN30.W-2GDUzxihpaIMpClSjjVCP_NwOfXTG6o1D2PELzyfOFS0MFHEgrJIce9849sFMShok2VPTZ6JfW6qMxSx-SCw";
 
 
 		public static class AsyncHelper
@@ -43,6 +43,9 @@ namespace APITest
             } else if (len == 1) {
                 long t = 0;
                 int times = 1000;
+                Console.WriteLine("please enter the number of byte");
+                num = Int32.Parse(Console.ReadLine());
+                ApiBaseUrl = string.Format(ApiBaseUrl, num);
                 switch (args[0])
                 {
                     case "http":

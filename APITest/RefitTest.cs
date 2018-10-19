@@ -9,8 +9,8 @@ namespace APITest
 	{
 		public interface PatientApi
         {
-			[Get("/patients")]
-			Task<Patient[]> GetUser([Header("Authorization")] string bearerToken);
+			[Get("")]
+            Task<string> GetUser();
 
         }
 		public static long Test()
@@ -18,15 +18,15 @@ namespace APITest
 			//Start to count the time
             var watch = Stopwatch.StartNew();
 
-			var Url = "http://localhost:8080/api";
+            var Url = Program.ApiBaseUrl;
 			var Api = RestService.For<PatientApi>(Url);
-			var Result = Api.GetUser("Bearer " + APITest.Program.token).Result.ToString();
+			var Result = Api.GetUser().Result.ToString();
 
 
 			watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
-			//Console.WriteLine(elapsedMs + " ");
-			Console.WriteLine(Result);
+			//Console.Write(elapsedMs + " ");
+			//Console.WriteLine(Result);
             return elapsedMs;
             
 		}

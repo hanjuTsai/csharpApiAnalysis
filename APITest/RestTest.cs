@@ -16,19 +16,22 @@ namespace APITest
             client.BaseUrl = new Uri(Program.ApiBaseUrl);
             RestRequest request = new RestRequest(Method.GET);
 
-            //Authorization
-            request.AddHeader("authorization", "Bearer " + APITest.Program.token);
-            RestSharp.Deserializers.JsonDeserializer deserial = new RestSharp.Deserializers.JsonDeserializer();
-            IRestResponse getResponse = client.Execute(request);
-            request.JsonSerializer = new RestSharp.Serializers.JsonSerializer();
+            ////Authorization
+            //request.AddHeader();
+            //RestSharp.Deserializers.JsonDeserializer deserial = new RestSharp.Deserializers.JsonDeserializer();
+            //IRestResponse getResponse = client.Execute(request);
+            //request.JsonSerializer = new RestSharp.Serializers.JsonSerializer();
 
 
             IRestResponse response = client.Execute(request);
-            var jsonBody = Json.ToObjectAsync<Patient[]>(response.Content).Result;
+            var result = response.Content;
+            //var jsonBody = Json.ToObjectAsync<Patient[]>(response.Content).Result;
 
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
             Console.Write(elapsedMs + " ");
+            //Console.Write(result);
+
             return elapsedMs;
         }
     }
