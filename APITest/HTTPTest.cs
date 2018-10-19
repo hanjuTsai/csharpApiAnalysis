@@ -30,7 +30,7 @@ namespace APITest
             // For counting the time of serialization
             watch.Stop();
 			var elapsedMs = watch.ElapsedMilliseconds;
-            Console.Write(elapsedMs + " ");
+            //Console.Write(elapsedMs + " ");
 			return elapsedMs;
         }
     }

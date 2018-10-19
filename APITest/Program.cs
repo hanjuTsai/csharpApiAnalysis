@@ -37,30 +37,24 @@ namespace APITest
 
 		static void Main(string[] args)
         {
-            var len = args.Length;
-            if (len == 0) {
-                // TODO: no args
-            } else if (len >= 1) {
-                long t = 0;
-                int times = 1000;
-                if(len == 2){
-                    num = Int32.Parse(args[1]);
-                }else{
-                    Console.WriteLine("please enter the number of byte");
-                    num = Int32.Parse(Console.ReadLine());
-                }
 
+            int times = 1000;
+            num = Int32.Parse(args[0]);
+            for (int j = 0; j <= 2; j++)
+            {
+                long t = 0;
                 ApiBaseUrl = string.Format(ApiBaseUrl, num);
-                switch (args[0])
+                switch (j)
                 {
-                    case "http":
-                        for (var i = 0; i < times; i++) {
+                    case 0:
+                        for (var i = 0; i < times; i++)
+                        {
                             t += HTTPTest.Test();
                         }
                         Console.WriteLine("Total time for http = {0} ms", t);
                         Console.WriteLine("Average time for http = {0} ms", t * 1.0 / times);
                         break;
-                    case "restsharp":
+                    case 1:
                         for (var i = 0; i < times; i++)
                         {
                             t += RestTest.Test();
@@ -68,18 +62,17 @@ namespace APITest
                         Console.WriteLine("Totaltime for restsharp = {0} ms", t);
                         Console.WriteLine("Average time for restsharp = {0} ms", t * 1.0 / times);
                         break;
-                    case "refit":
-						for (var i = 0; i < times; i++)
+                    case 2:
+                        for (var i = 0; i < times; i++)
                         {
                             t += RefitTest.Test();
                         }
-						Console.WriteLine("Totaltime for refit = {0} ms", t);
+                        Console.WriteLine("Totaltime for refit = {0} ms", t);
                         Console.WriteLine("Average time for refit = {0} ms", t * 1.0 / times);
                         break;
                 }
-            } else {
-                Console.WriteLine("Error: only accept one argument!");
             }
+   
         }
     }
 }

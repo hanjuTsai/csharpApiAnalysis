@@ -29,7 +29,7 @@ namespace APITest
 
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
-            Console.Write(elapsedMs + " ");
+            //Console.Write(elapsedMs + " ");
             //Console.Write(result);
 
             return elapsedMs;
