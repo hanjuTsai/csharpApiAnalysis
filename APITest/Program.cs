@@ -40,11 +40,16 @@ namespace APITest
             var len = args.Length;
             if (len == 0) {
                 // TODO: no args
-            } else if (len == 1) {
+            } else if (len >= 1) {
                 long t = 0;
                 int times = 1000;
-                Console.WriteLine("please enter the number of byte");
-                num = Int32.Parse(Console.ReadLine());
+                if(len == 2){
+                    num = Int32.Parse(args[1]);
+                }else{
+                    Console.WriteLine("please enter the number of byte");
+                    num = Int32.Parse(Console.ReadLine());
+                }
+
                 ApiBaseUrl = string.Format(ApiBaseUrl, num);
                 switch (args[0])
                 {
