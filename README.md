@@ -21,6 +21,56 @@ Execute the local server before running the csharp project
 ```
 dotnet run --project APITest <http|restsharp|refit> <num-of-byte>
 ```
+## Analysis
+### Note that:
+each testing runs for 1000 times 
+
+##### Case 1: 20 byte
 
 
+| API tool | Avg_time(ms) |
+| -------- | -------- | 
+| HTTP     |  0.071 ms    | 
+| Restsharp    |  0.075 ms   | 
+| Refit     | 0.084 ms     | 
 
+
+##### Case 1: 100 byte
+
+| API tool | Avg_time(ms) | 
+| -------- | -------- |
+| HTTP     |  0.076 ms    | 
+| Restsharp    |  0.164 ms  | 
+| Refit     | 0.108 ms  |   
+
+##### Case 1: 500 byte
+
+| API tool | Avg_time(ms) | 
+| -------- | -------- |
+| HTTP     |  0.147 ms    | 
+| Restsharp    |  0.49 ms  | 
+| Refit     | 0.15 ms  |   
+
+
+##### Case 1: 2500 byte
+
+| API tool | Avg_time(ms) | 
+| -------- | -------- |
+| HTTP     |  0.103 ms    | 
+| Restsharp    |  0.189 ms  | 
+| Refit     | 0.121 ms  |  
+
+##### Case 1: 3000 byte
+| API tool | Avg_time(ms) | 
+| -------- | -------- |
+| HTTP     |  0.076 ms    | 
+| Restsharp    |  0.164 ms  | 
+| Refit     | 0.108 ms  |  
+
+##### Case 1: 4096 byte
+
+| API tool | Avg_time(ms) | 
+| -------- | -------- |
+| HTTP     |  0.0136 ms    | 
+| Restsharp    |  0.18 ms  | 
+| Refit     | 0.126 ms  |  
