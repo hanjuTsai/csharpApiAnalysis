@@ -39,40 +39,51 @@ namespace APITest
         {
 
             int times = 1000;
-            num = Int32.Parse(args[0]);
-            for (int j = 0; j <= 2; j++)
-            {
-                long t = 0;
+            int[] bytearr = { 5, 10,  20, 100, 500, 1024, 2048, 4048 };
+
+
+            for (int b = 0; b < bytearr.Length; b++){
+                Console.WriteLine("--------------------{0}-bytes--------------------", bytearr[b]);
+                num = bytearr[b];
                 ApiBaseUrl = string.Format(ApiBaseUrl, num);
-                switch (j)
+
+                for (int j = 0; j <= 2; j++)
                 {
-                    case 0:
-                        for (var i = 0; i < times; i++)
-                        {
-                            t += HTTPTest.Test();
-                        }
-                        Console.WriteLine("Total time for http = {0} ms", t);
-                        Console.WriteLine("Average time for http = {0} ms", t * 1.0 / times);
-                        break;
-                    case 1:
-                        for (var i = 0; i < times; i++)
-                        {
-                            t += RestTest.Test();
-                        }
-                        Console.WriteLine("Totaltime for restsharp = {0} ms", t);
-                        Console.WriteLine("Average time for restsharp = {0} ms", t * 1.0 / times);
-                        break;
-                    case 2:
-                        for (var i = 0; i < times; i++)
-                        {
-                            t += RefitTest.Test();
-                        }
-                        Console.WriteLine("Totaltime for refit = {0} ms", t);
-                        Console.WriteLine("Average time for refit = {0} ms", t * 1.0 / times);
-                        break;
+                    long t = 0;
+                    switch (j)
+                    {
+                        case 0:
+                            for (var i = 0; i < times; i++)
+                            {
+                                t += HTTPTest.Test();
+                            }
+                            //Console.WriteLine("Total time for http = {0} ms", t);
+                            //Console.WriteLine("Average time for http = {0} ms", t * 1.0 / times);
+                            Console.WriteLine(t * 1.0 / times);
+                            break;
+                        case 1:
+                            for (var i = 0; i < times; i++)
+                            {
+                                t += RestTest.Test();
+                            }
+                            //Console.WriteLine("Totaltime for restsharp = {0} ms", t);
+                            //Console.WriteLine("Average time for restsharp = {0} ms", t * 1.0 / times);
+                            Console.WriteLine(t * 1.0 / times);
+                            break;
+                        case 2:
+                            for (var i = 0; i < times; i++)
+                            {
+                                t += RefitTest.Test();
+                            }
+                            //Console.WriteLine("Totaltime for refit = {0} ms", t);
+                            //Console.WriteLine("Average time for refit = {0} ms", t * 1.0 / times);
+                            Console.WriteLine(t * 1.0 / times);
+                            break;
+                    }
                 }
+
             }
-   
+
         }
     }
 }

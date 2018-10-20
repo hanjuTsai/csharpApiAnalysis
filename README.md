@@ -74,3 +74,8 @@ each testing runs for 1000 times
 | HTTP     |  0.136 ms    | 
 | Restsharp    |  0.18 ms  | 
 | Refit     | 0.126 ms  |  
+
+#### Statistical Analysis
+[](plot.png?raw=true)
+
+

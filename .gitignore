@@ -33,6 +33,9 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 
+# Jupyter lab
+.ipynb_checkpoints/*
+
 _ReSharper.*
 bin
 obj
