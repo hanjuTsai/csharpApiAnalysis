@@ -25,67 +25,17 @@ dotnet run --project APITest <http|restsharp|refit> <num-of-byte>
 ```
 ## Analysis
 ### Note that:
-each testing runs for 1000 times 
-
-##### Case 1: 20 byte
-
-
-| API tool | Avg_time(ms) |
-| -------- | -------- | 
-| HTTP     |  0.071 ms    | 
-| Restsharp    |  0.075 ms   | 
-| Refit     | 0.084 ms     | 
+1. Each testing runs for 1000 times 
+2. The result may differs depends on the server's reponse time
 
 
-##### Case 1: 100 byte
-
-| API tool | Avg_time(ms) | 
-| -------- | -------- |
-| HTTP     |  0.076 ms    | 
-| Restsharp    |  0.164 ms  | 
-| Refit     | 0.108 ms  |   
-
-##### Case 1: 500 byte
-
-| API tool | Avg_time(ms) | 
-| -------- | -------- |
-| HTTP     |  0.147 ms    | 
-| Restsharp    |  0.49 ms  | 
-| Refit     | 0.15 ms  |   
-
-
-##### Case 1: 1024 byte
-
-| API tool | Avg_time(ms) | 
-| -------- | -------- |
-| HTTP     |  0.13 ms    | 
-| Restsharp    |  0.178 ms  | 
-| Refit     | 0.135 ms  |   
-
-
-##### Case 1: 2048 byte
-
-| API tool | Avg_time(ms) | 
-| -------- | -------- |
-| HTTP     |  0.115 ms    | 
-| Restsharp    |  0.273 ms  | 
-| Refit     | 0.153 ms  |  
-
-##### Case 1: 3072 byte
-| API tool | Avg_time(ms) | 
-| -------- | -------- |
-| HTTP     |  0.119 ms    | 
-| Restsharp    | 0.323 ms  | 
-| Refit     |  0.141 ms  |  
-
-##### Case 1: 4096 byte
-
-| API tool | Avg_time(ms) | 
-| -------- | -------- |
-| HTTP     |  0.179 ms    | 
-| Restsharp    |  0.119 ms  | 
-| Refit     | 0.14 ms  |  
 
 
 ##### Statistical Analysis
 ![](plot.png?raw=true)
+
+| API Tool \bytes | 5 | 10 | 20 | 100 | 500 | 1024 | 2048 | 4096  |
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |-------- |
+| HTTP   | 0.063   | 0.002    | 0.002   | 0    | 0   | 0.001     | 0    | 0.001   |
+| Restsharp    | 0.103     | 0.002     | 0     |0.008     | 0.004    | 0   |0.003  | 0.001|
+| Refit     | 0.079 | 0.001 | 0 | 0 | 0.003 | 0.011 | 0.003 | 0.001|
